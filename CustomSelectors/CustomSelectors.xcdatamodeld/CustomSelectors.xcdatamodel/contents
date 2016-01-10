@@ -24,12 +24,13 @@
         <relationship name="time_events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeEvent" inverseName="teammember" inverseEntity="TimeEvent" syncable="YES"/>
     </entity>
     <entity name="TimeEvent" syncable="YES">
+        <attribute name="event_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="occurred_at" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="selections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SelectorObject" inverseName="time_events" inverseEntity="SelectorObject" syncable="YES"/>
         <relationship name="teammember" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="time_events" inverseEntity="TeamMember" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TimeEvent" positionX="-153" positionY="29" width="128" height="88"/>
+        <element name="TimeEvent" positionX="-153" positionY="29" width="128" height="103"/>
         <element name="Team" positionX="-279" positionY="-166" width="153" height="103"/>
         <element name="TeamMember" positionX="-459" positionY="-67" width="128" height="103"/>
         <element name="SelectorType" positionX="-38" positionY="-177" width="128" height="105"/>
