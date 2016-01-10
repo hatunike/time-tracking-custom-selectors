@@ -1,4 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
+    <entity name="SelectorObject" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="time_events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TimeEvent" inverseName="selections" inverseEntity="TimeEvent" syncable="YES"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SelectorType" inverseName="objects" inverseEntity="SelectorType" syncable="YES"/>
+    </entity>
+    <entity name="SelectorType" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="objects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SelectorObject" inverseName="type" inverseEntity="SelectorObject" syncable="YES"/>
+        <relationship name="team_optional" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="optional_selection_types" inverseEntity="Team" syncable="YES"/>
+        <relationship name="team_required" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="required_selection_types" inverseEntity="Team" syncable="YES"/>
+    </entity>
+    <entity name="Team" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="optional_selection_types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SelectorType" inverseName="team_optional" inverseEntity="SelectorType" syncable="YES"/>
+        <relationship name="required_selection_types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SelectorType" inverseName="team_required" inverseEntity="SelectorType" syncable="YES"/>
+        <relationship name="teammember" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="team" inverseEntity="TeamMember" syncable="YES"/>
+    </entity>
+    <entity name="TeamMember" syncable="YES">
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="teammember" inverseEntity="Team" syncable="YES"/>
+        <relationship name="time_events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeEvent" inverseName="teammember" inverseEntity="TimeEvent" syncable="YES"/>
+    </entity>
+    <entity name="TimeEvent" syncable="YES">
+        <attribute name="occurred_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="selections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SelectorObject" inverseName="time_events" inverseEntity="SelectorObject" syncable="YES"/>
+        <relationship name="teammember" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="time_events" inverseEntity="TeamMember" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="TimeEvent" positionX="-153" positionY="29" width="128" height="88"/>
+        <element name="Team" positionX="-279" positionY="-166" width="153" height="103"/>
+        <element name="TeamMember" positionX="-459" positionY="-67" width="128" height="103"/>
+        <element name="SelectorType" positionX="-38" positionY="-177" width="128" height="105"/>
+        <element name="SelectorObject" positionX="135" positionY="-27" width="128" height="88"/>
+    </elements>
 </model>
