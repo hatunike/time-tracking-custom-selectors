@@ -20,4 +20,4 @@ We have a basic setup. A team of teammembers that track their time by selecting
 multiple SelectorObjects (each having a SelectorType).
 
 
-
+![alt tag](https://raw.githubusercontent.com/hatunike/time-tracking-custom-selectors/master/basic-model.png)
